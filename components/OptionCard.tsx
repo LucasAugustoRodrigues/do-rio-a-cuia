@@ -24,7 +24,7 @@ export function OptionCard({ href, titulo, subtitulo, icone, tom }: Props) {
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-[17px] font-bold leading-6 text-roxo-900">{titulo}</p>
-        <p className="mt-0.5 truncate text-[14px] leading-5 text-roxo-texto-2">{subtitulo}</p>
+        <p className="mt-0.5 text-[14px] leading-5 text-roxo-texto-2">{subtitulo}</p>
       </div>
       <ArrowRight size={22} strokeWidth={2} className="shrink-0 text-roxo-texto-2" aria-hidden />
     </Link>
