@@ -1,4 +1,4 @@
-@AGENTS.md
+Next 16: as APIs certas vêm na nota do PR. A doc em node_modules/next/dist/docs/ (ver AGENTS.md) só quando um check falhar com erro de API do Next, e só a página do erro.
 
 # CLAUDE.md – Do Rio à Cuia
 
