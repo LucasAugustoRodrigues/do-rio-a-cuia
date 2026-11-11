@@ -8,7 +8,7 @@ export default async function PerfilPage() {
   if (!perfil) redirect("/entrar?next=%2Fperfil");
 
   return (
-    <main className="mx-auto w-full max-w-[430px] px-5 pt-6 pb-6">
+    <div>
       <h1 className="text-[28px] font-extrabold leading-9 text-roxo-900">Olá, {perfil.nome}</h1>
       <p className="mt-3">
         <span data-perfil-papel className="inline-flex h-8 items-center rounded-full bg-amarelo px-3 text-[14px] font-semibold text-roxo-900">
@@ -24,6 +24,6 @@ export default async function PerfilPage() {
       <form action={sair} className="mt-8">
         <Button type="submit" variante="contornado">Sair da conta</Button>
       </form>
-    </main>
+    </div>
   );
 }
