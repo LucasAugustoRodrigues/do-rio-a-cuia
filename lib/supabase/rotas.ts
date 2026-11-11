@@ -11,7 +11,7 @@ export function destinoSeguro(
   next: string | null | undefined,
   padrao = "/cotacao",
 ): string {
-  if (!next || !next.startsWith("/") || next.startsWith("//") || next.startsWith("/\\")) {
+  if (!next || !next.startsWith("/") || next.startsWith("//") || [...next].some((c) => c === "\\" || c.charCodeAt(0) < 32 || c.charCodeAt(0) === 127)) {
     return padrao;
   }
   return next;

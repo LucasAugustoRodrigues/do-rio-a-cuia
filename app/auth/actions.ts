@@ -32,9 +32,9 @@ function mensagemDoErro(codigo?: string): EstadoForm {
 }
 
 export async function entrar(estado: EstadoForm, formData: FormData): Promise<EstadoForm> {
-  const telefone = formData.get("telefone") as string;
-  const senha = formData.get("senha") as string;
-  const next = formData.get("next") as string | null;
+  const telefone = String(formData.get("telefone") ?? "");
+  const senha = String(formData.get("senha") ?? "");
+  const next = String(formData.get("next") ?? "");
 
   const tel = normalizarTelefone(telefone ?? "");
   if (!tel) return { erro: "Informe o telefone com DDD.", campo: "telefone" };
@@ -52,11 +52,11 @@ export async function entrar(estado: EstadoForm, formData: FormData): Promise<Es
 }
 
 export async function criarConta(estado: EstadoForm, formData: FormData): Promise<EstadoForm> {
-  const nomeRaw = formData.get("nome") as string;
-  const telefone = formData.get("telefone") as string;
-  const senha = formData.get("senha") as string;
-  const papel = formData.get("papel") as string;
-  const next = formData.get("next") as string | null;
+  const nomeRaw = String(formData.get("nome") ?? "");
+  const telefone = String(formData.get("telefone") ?? "");
+  const senha = String(formData.get("senha") ?? "");
+  const papel = String(formData.get("papel") ?? "");
+  const next = String(formData.get("next") ?? "");
 
   const nome = (nomeRaw ?? "").trim().replace(/\s+/g, " ");
 

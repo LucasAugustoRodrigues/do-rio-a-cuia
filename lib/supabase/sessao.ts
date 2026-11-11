@@ -13,10 +13,11 @@ export async function atualizarSessao(request: NextRequest): Promise<NextRespons
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet, headers: Record<string, string> = {}) {
           cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           resposta = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) => resposta.cookies.set(name, value, options));
+          Object.entries(headers).forEach(([k, v]) => resposta.headers.set(k, v));
         },
       },
     },
