@@ -64,3 +64,8 @@ export function lerValor(texto: string): number | null {
 export function valorParaCampo(v: number): string {
   return v.toFixed(2).replace(".", ",");
 }
+
+export function dataDeISO(diaISO: string): string {
+  const [ano, mes, dia] = diaISO.slice(0, 10).split("-");
+  return `${dia}/${mes}/${ano}`;
+}

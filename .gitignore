@@ -42,3 +42,6 @@ next-env.d.ts
 
 # exemplo de variáveis (sem segredos)
 !.env.example
+# Gerados localmente (QR codes do scripts/qr.mjs e pasta do playwright-cli do QA)
+/qr-codes/
+/.playwright-cli/
