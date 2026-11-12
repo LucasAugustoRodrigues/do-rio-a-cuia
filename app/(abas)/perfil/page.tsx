@@ -20,7 +20,7 @@ export default async function PerfilPage() {
           {perfil.telefone}
         </p>
       )}
-      <p className="mt-1 text-[16px] text-roxo-texto-2">O perfil completo chega no PR#5.</p>
+      <p className="mt-1 text-[16px] text-roxo-texto-2">O perfil completo chega numa próxima versão.</p>
       <form action={sair} className="mt-8">
         <Button type="submit" variante="contornado">Sair da conta</Button>
       </form>
