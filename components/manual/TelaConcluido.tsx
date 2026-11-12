@@ -20,7 +20,7 @@ export default function TelaConcluido({ itens }: { itens: ItemChecklist[] }) {
         <div className="grid size-[78px] place-items-center rounded-full border-2 border-branco">
           {completo ? <Check size={40} strokeWidth={2.5} aria-hidden /> : <ListChecks size={36} strokeWidth={2} aria-hidden />}
         </div>
-        <h1 className="mt-[22px] text-[22px] font-extrabold leading-8">{completo ? "Checklist concluído" : "Checklist de hoje"}</h1>
+        <h1 className="mt-[22px] text-[22px] font-extrabold leading-9">{completo ? "Checklist concluído" : "Checklist de hoje"}</h1>
         <p data-total className="mt-1 text-[16px] leading-6">{feitos} de {total} itens marcados hoje</p>
       </section>
 
