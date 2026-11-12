@@ -9,7 +9,7 @@ import BarChart30 from "@/components/BarChart30";
 export default async function CotacaoPage() {
   const cotacao = await lerCotacao();
   return (
-    <div className="mx-auto w-full max-w-[430px] px-5 pt-6">
+    <div>
       <p data-sobretitulo className="text-[15px] leading-6 text-roxo-texto-2">Feira do Açaí - hoje, {dataBelem(new Date())}</p>
       <h1 className="text-[28px] font-extrabold leading-9 text-roxo-900">Cotação do dia</h1>
       {cotacao ? (
