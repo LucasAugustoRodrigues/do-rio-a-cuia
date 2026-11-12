@@ -1,5 +1,5 @@
 import { criarClienteServidor } from "@/lib/supabase/server";
-import { ETAPAS, type ItemChecklist, type SlugEtapa } from "@/lib/checklist";
+import { ETAPAS, type ItemChecklist, type SlugEtapa } from "@/lib/checklist-shared";
 
 type Linha = { etapa: string; ordem: number; descricao: string; motivo: string };
 
