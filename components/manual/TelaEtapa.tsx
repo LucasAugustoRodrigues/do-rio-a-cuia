@@ -20,7 +20,7 @@ export default function TelaEtapa({ itens, etapa }: { itens: ItemChecklist[]; et
           <Link href="/manual" aria-label="Voltar ao manual" data-voltar className="grid size-11 shrink-0 place-items-center rounded-full bg-branco/5 text-branco">
             <ChevronLeft size={24} strokeWidth={1.75} aria-hidden />
           </Link>
-          <h1 className="text-[22px] font-extrabold leading-9 text-branco">Checklist do batedor</h1>
+          <h1 className="text-[18px] font-extrabold leading-tight text-branco">Checklist do batedor</h1>
         </div>
         <nav aria-label="Etapas" data-stepper className="-mx-5 mt-[11px] flex items-center gap-2 overflow-x-auto px-5 [scrollbar-width:none]">
           {resumo.map((r, i) =>
