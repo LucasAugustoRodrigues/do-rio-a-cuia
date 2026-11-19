@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChartNoAxesColumn, MapPin, ListChecks, User } from "lucide-react";
 import type { ReactNode } from "react";
+import type { Modo } from "@/lib/modo";
 
 type NavItem = {
   label: string;
@@ -36,16 +37,18 @@ const items: NavItem[] = [
   },
 ];
 
-export function BottomNav() {
+export function BottomNav({ modo }: { modo: Modo | null }) {
   const pathname = usePathname();
+  const consumidor = modo === "toma";
+  const visiveis = consumidor ? items.filter((item) => item.href === "/mapa" || item.href === "/perfil") : items;
 
   return (
     <nav
       aria-label="Navegação principal"
       data-bottom-nav
-      className="fixed inset-x-0 bottom-4 z-40 mx-auto flex h-16 w-[calc(100%-32px)] max-w-[398px] items-center justify-between rounded-[32px] bg-branco px-5 shadow-[0_8px_24px_rgba(43,15,56,0.10)]"
+      className={`fixed inset-x-0 bottom-4 z-40 mx-auto flex h-16 w-[calc(100%-32px)] max-w-[398px] items-center ${consumidor ? "justify-around" : "justify-between"} rounded-[32px] bg-branco px-5 shadow-[0_8px_24px_rgba(43,15,56,0.10)]`}
     >
-      {items.map(({ label, href, icon, extraPrefixes }) => {
+      {visiveis.map(({ label, href, icon, extraPrefixes }) => {
         const isActive =
           pathname.startsWith(href) ||
           (extraPrefixes?.some((p) => pathname.startsWith(p)) ?? false);

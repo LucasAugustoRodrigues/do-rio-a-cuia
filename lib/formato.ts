@@ -48,6 +48,13 @@ export function diaMesDeISO(diaISO: string): string {
   return `${dia}/${mes}`;
 }
 
+const semana = new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC", weekday: "long" });
+
+export function diaSemanaDeISO(diaISO: string): string {
+  const nome = semana.format(new Date(`${diaISO}T12:00:00Z`));
+  return `${nome.charAt(0).toUpperCase()}${nome.slice(1)}, ${diaMesDeISO(diaISO)}`;
+}
+
 export function contarRegistros(n: number): string {
   return n === 1 ? "1 registro" : `${n} registros`;
 }

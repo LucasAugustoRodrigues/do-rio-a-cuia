@@ -1,10 +1,12 @@
 import { ArrowRight, ChevronLeft, Info, MapPin, ShieldCheck, Store, Waves } from "lucide-react";
 import Image from "next/image";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import InfoList from "@/components/InfoList";
 import SealHero from "@/components/SealHero";
 import { lerPontoPorSlug } from "@/lib/dados/pontos";
+import { COOKIE_MODO, lerModo, linkModo } from "@/lib/modo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,19 +17,23 @@ export async function generateMetadata() {
 }
 
 export default async function PaginaPonto({ params }: Props) {
+  const modo = lerModo((await cookies()).get(COOKIE_MODO)?.value);
+  const consumidor = modo !== "vende";
+  const Voltar = consumidor ? "a" : Link;
+  const mapaFiltrado = consumidor ? linkModo("toma", "/mapa?filtro=valido") : "/mapa?filtro=valido";
   const { slug } = await params;
   const resultado = await lerPontoPorSlug(slug);
 
   const cabecalho = (
     <header className="flex items-center justify-between">
-      <Link
-        href="/mapa"
+      <Voltar
+        href={consumidor ? linkModo("toma", "/mapa") : "/mapa"}
         aria-label="Voltar ao mapa"
         data-voltar
         className="grid size-11 place-items-center rounded-full bg-cinza-voltar text-branco"
       >
         <ChevronLeft size={24} strokeWidth={1.75} aria-hidden />
-      </Link>
+      </Voltar>
       <div className="flex items-center gap-3">
         <Image src="/logo.png" alt="" width={48} height={48} priority className="rounded-[12px]" />
         <span className="text-[24px] font-extrabold leading-8 text-roxo-700">Do Rio à Cuia</span>
@@ -127,10 +133,17 @@ export default async function PaginaPonto({ params }: Props) {
           O selo é da prefeitura. O Do Rio à Cuia só confere a validade pela data de hoje.
         </p>
         <div className="mt-auto pt-8">
-          <Button href="/manual">
-            Ver boas práticas do batedor
-            <ArrowRight size={22} strokeWidth={2.25} aria-hidden />
-          </Button>
+          {consumidor ? (
+            <Button nativo href={mapaFiltrado} icone={<MapPin size={22} strokeWidth={2} aria-hidden />}>
+              Ver outros pontos com selo
+              <ArrowRight size={22} strokeWidth={2.25} aria-hidden />
+            </Button>
+          ) : (
+            <Button href="/manual">
+              Ver boas práticas do batedor
+              <ArrowRight size={22} strokeWidth={2.25} aria-hidden />
+            </Button>
+          )}
         </div>
       </main>
     );
@@ -152,7 +165,7 @@ export default async function PaginaPonto({ params }: Props) {
         <InfoList itens={itens} />
       </div>
       <div className="mt-auto pt-8">
-        <Button href="/mapa?filtro=valido" icone={<MapPin size={22} strokeWidth={2} aria-hidden />}>
+        <Button nativo={consumidor} href={mapaFiltrado} icone={<MapPin size={22} strokeWidth={2} aria-hidden />}>
           Ver pontos com selo válido
           <ArrowRight size={22} strokeWidth={2.25} aria-hidden />
         </Button>

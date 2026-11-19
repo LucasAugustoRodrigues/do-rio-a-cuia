@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 type ButtonProps = {
   variante?: "primario" | "destaque" | "contornado";
   href?: string;
+  nativo?: boolean;
   icone?: ReactNode;
   children: ReactNode;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children">;
@@ -20,6 +21,7 @@ const variantes = {
 export function Button({
   variante = "primario",
   href,
+  nativo,
   icone,
   children,
   ...props
@@ -27,11 +29,12 @@ export function Button({
   const classes = `${base} ${variantes[variante]}`;
 
   if (href) {
+    const Ancora = nativo ? "a" : Link;
     return (
-      <Link href={href} className={classes} data-variante={variante}>
+      <Ancora href={href} className={classes} data-variante={variante}>
         {icone}
         {children}
-      </Link>
+      </Ancora>
     );
   }
 

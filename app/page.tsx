@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ChartNoAxesColumn, ShieldCheck } from "lucide-react";
 import { OndasEntrada } from "@/components/OndasEntrada";
 import { OptionCard } from "@/components/OptionCard";
+import { linkModo } from "@/lib/modo";
 
 export default function EntradaPage() {
   return (
@@ -43,14 +43,14 @@ export default function EntradaPage() {
           </h2>
           <div className="mt-[14px] flex flex-col gap-3">
             <OptionCard
-              href="/cotacao"
+              href={linkModo("vende", "/cotacao")}
               titulo="Vou vender açaí"
-              subtitulo="Veja a cotação da Feira hoje"
+              subtitulo="Cotação da rasa na Feira hoje"
               icone={<ChartNoAxesColumn size={24} strokeWidth={2} aria-hidden />}
               tom="azul"
             />
             <OptionCard
-              href="/mapa"
+              href={linkModo("toma", "/mapa")}
               titulo="Vou tomar açaí"
               subtitulo="Confira se o ponto tem selo válido"
               icone={<ShieldCheck size={24} strokeWidth={2} aria-hidden />}
@@ -59,12 +59,12 @@ export default function EntradaPage() {
           </div>
           <p className="mt-2 flex items-center justify-center gap-1 text-[14px] text-roxo-texto-2">
             <span>Já tem conta?</span>
-            <Link
-              href="/entrar"
+            <a
+              href={linkModo("vende", "/entrar")}
               className="flex min-h-11 items-center px-1 font-bold text-roxo-900 underline underline-offset-2"
             >
               Entrar
-            </Link>
+            </a>
           </p>
         </section>
       </div>
