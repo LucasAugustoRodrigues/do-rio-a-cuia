@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 const BASE =
-  "inline-flex h-11 items-center gap-2 rounded-full text-[16px] font-semibold aria-pressed:bg-roxo-700 aria-pressed:text-branco";
+  "inline-flex h-11 items-center gap-2 rounded-full text-[16px] font-semibold transition-transform duration-150 ease-out active:scale-[0.97] aria-pressed:bg-roxo-700 aria-pressed:text-branco";
 
 const VARIANTE: Record<string, string> = {
   borda: "border-[1.5px] border-bege-chip bg-branco px-6 text-roxo-900 aria-pressed:border-roxo-700",

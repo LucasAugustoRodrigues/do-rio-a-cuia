@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Check, ChevronLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import CronometroBranqueamento from "@/components/manual/CronometroBranqueamento";
 import { useMarcados, resumir, ETAPAS, type ItemChecklist, type SlugEtapa } from "@/lib/checklist";
 
 export default function TelaEtapa({ itens, etapa }: { itens: ItemChecklist[]; etapa: SlugEtapa }) {
@@ -46,6 +47,7 @@ export default function TelaEtapa({ itens, etapa }: { itens: ItemChecklist[]; et
         <div role="progressbar" aria-label="Itens marcados nesta etapa" aria-valuemin={0} aria-valuemax={atual.total} aria-valuenow={atual.feitos} className="mt-3 h-1.5 rounded-full bg-branco">
           <div data-progresso-etapa className="h-full rounded-full bg-verde" style={{ width: `${atual.total ? (atual.feitos / atual.total) * 100 : 0}%` }} />
         </div>
+        {etapa === "branqueamento" && <CronometroBranqueamento />}
         <ul className="mt-3.5 flex flex-col gap-2">
           {daEtapa.map((item) => {
             const marcado = marcados.includes(item.chave);
