@@ -13,7 +13,7 @@ export default function PriceHero({ cotacao }: { cotacao: Cotacao }) {
       ? `Média de ${diaMesDeISO(ultimo.dia)} - ${contarRegistros(ultimo.qtd)}`
       : "Registre o primeiro preço do dia.";
   return (
-    <section data-price-hero aria-label="Cotação da rasa" className="rounded-[32px] bg-roxo-700 px-5 pt-[22px] pb-5 text-branco">
+    <section data-price-hero aria-label="Cotação da rasa" className="@container rounded-[32px] bg-roxo-700 px-5 pt-[22px] pb-5 text-branco">
       <div className="flex min-h-7 items-center justify-between gap-3">
         <p data-rotulo className="text-[16px] font-medium leading-6">{rotulo}</p>
         {hoje && variacao !== null && (
@@ -22,7 +22,9 @@ export default function PriceHero({ cotacao }: { cotacao: Cotacao }) {
           </span>
         )}
       </div>
-      <p data-media className="mt-1 text-[48px] font-extrabold leading-[56px]">{dia ? formatarReais(dia.media) : VAZIO}</p>
+      <p data-media className="mt-1 text-[clamp(1.5rem,16cqi,3rem)] font-extrabold leading-[1.167] [overflow-wrap:anywhere]">
+        {dia ? formatarReais(dia.media) : VAZIO}
+      </p>
       <div className="mt-3 grid grid-cols-2 gap-2.5">
         <div className="rounded-[18px] bg-roxo-500 px-3.5 py-3">
           <p className="text-[15px] leading-5">Mínimo</p>

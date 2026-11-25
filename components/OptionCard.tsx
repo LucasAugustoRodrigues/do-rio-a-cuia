@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -14,7 +13,7 @@ export function OptionCard({ href, titulo, subtitulo, icone, tom }: Props) {
   const iconeBg = tom === "azul" ? "bg-azul-claro text-azul" : "bg-verde-claro text-verde";
 
   return (
-    <Link
+    <a
       href={href}
       data-option-card
       className="flex min-h-[76px] items-center gap-4 rounded-[24px] bg-branco px-4 py-[14px] shadow-[0_6px_20px_rgba(43,15,56,0.06)]"
@@ -27,6 +26,6 @@ export function OptionCard({ href, titulo, subtitulo, icone, tom }: Props) {
         <p className="mt-0.5 text-[14px] leading-5 text-roxo-texto-2">{subtitulo}</p>
       </div>
       <ArrowRight size={22} strokeWidth={2} className="shrink-0 text-roxo-texto-2" aria-hidden />
-    </Link>
+    </a>
   );
 }

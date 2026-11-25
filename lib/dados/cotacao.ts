@@ -2,7 +2,13 @@ import { criarClienteServidor } from "@/lib/supabase/server";
 import { diaISOMenos, hojeBelemISO } from "@/lib/formato";
 
 export type DiaCotacao = { dia: string; media: number; minimo: number; maximo: number; qtd: number; atualizadoEm: string };
-export type PontoHistorico = { dia: string; media: number | null };
+export type PontoHistorico = {
+  dia: string;
+  media: number | null;
+  minimo: number | null;
+  maximo: number | null;
+  qtd: number;
+};
 export type Cotacao = { hoje: DiaCotacao | null; ontem: DiaCotacao | null; ultimo: DiaCotacao | null; variacao: number | null; historico: PontoHistorico[] };
 
 type Linha = {
@@ -43,7 +49,14 @@ export async function lerCotacao(): Promise<Cotacao | null> {
     hojeDia && ontemDia && ontemDia.media > 0 ? ((hojeDia.media - ontemDia.media) / ontemDia.media) * 100 : null;
   const historico = Array.from({ length: 30 }, (_, i) => {
     const dia = diaISOMenos(hoje, 29 - i);
-    return { dia, media: dias.get(dia)?.media ?? null };
+    const d = dias.get(dia);
+    return {
+      dia,
+      media: d?.media ?? null,
+      minimo: d?.minimo ?? null,
+      maximo: d?.maximo ?? null,
+      qtd: d?.qtd ?? 0,
+    };
   });
   return { hoje: hojeDia, ontem: ontemDia, ultimo: ultimaLinha ? paraDia(ultimaLinha) : null, variacao, historico };
 }
