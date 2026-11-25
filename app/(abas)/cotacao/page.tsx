@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/Button";
 import Alerta from "@/components/ui/Alerta";
 import PriceHero from "@/components/PriceHero";
 import BarChart30 from "@/components/BarChart30";
+import CompartilharCotacao from "@/components/CompartilharCotacao";
 
 export default async function CotacaoPage() {
   const cotacao = await lerCotacao();
+  const dia = cotacao ? (cotacao.hoje ?? cotacao.ultimo) : null;
   return (
     <div>
       <p data-sobretitulo className="text-[15px] leading-6 text-roxo-texto-2">Feira do Açaí - hoje, {dataBelem(new Date())}</p>
@@ -16,11 +18,16 @@ export default async function CotacaoPage() {
         <>
           <div className="mt-1"><PriceHero cotacao={cotacao} /></div>
           <div className="mt-3.5"><BarChart30 historico={cotacao.historico} /></div>
+          {dia && (
+            <div className="mt-3.5">
+              <CompartilharCotacao dia={dia.dia} hoje={cotacao.hoje !== null} media={dia.media} minimo={dia.minimo} maximo={dia.maximo} />
+            </div>
+          )}
         </>
       ) : (
         <div className="mt-4"><Alerta>Não foi possível carregar a cotação agora. Tente de novo em instantes.</Alerta></div>
       )}
-      <div aria-hidden className="h-12" />
+      <div aria-hidden className="h-16" />
       <div className="fixed inset-x-0 bottom-24 z-30 mx-auto w-[calc(100%-40px)] max-w-[390px]">
         <Button variante="destaque" href="/registrar" icone={<Plus size={24} strokeWidth={2} aria-hidden />}>Registrar preço pago</Button>
       </div>

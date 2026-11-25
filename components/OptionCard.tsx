@@ -16,7 +16,7 @@ export function OptionCard({ href, titulo, subtitulo, icone, tom }: Props) {
     <a
       href={href}
       data-option-card
-      className="flex min-h-[76px] items-center gap-4 rounded-[24px] bg-branco px-4 py-[14px] shadow-[0_6px_20px_rgba(43,15,56,0.06)]"
+      className="flex min-h-[76px] items-center gap-4 rounded-[24px] bg-branco px-4 py-[14px] shadow-[0_6px_20px_rgba(43,15,56,0.06)] transition-transform duration-150 ease-out active:scale-[0.97]"
     >
       <div className={`grid size-12 shrink-0 place-items-center rounded-[12px] ${iconeBg}`}>
         {icone}

@@ -50,3 +50,37 @@ body {
   font-size: 13px;
   line-height: 18px;
 }
+
+/* Movimento (PR#7, D-035): só transform e opacity, de 150 a 420 ms; sem movimento para quem pede menos movimento */
+@theme {
+  --animate-surgir: surgir 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-crescer: crescer 300ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pilula: pilula 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-selo: selo 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-desenhar: desenhar 420ms 160ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes surgir {
+    from { opacity: 0; transform: translateY(8px); }
+  }
+  @keyframes crescer {
+    from { transform: scaleY(0); }
+  }
+  @keyframes pilula {
+    from { opacity: 0.6; transform: scale(0.92); }
+  }
+  @keyframes selo {
+    from { opacity: 0; transform: scale(0.96); }
+  }
+  @keyframes desenhar {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}

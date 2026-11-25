@@ -10,7 +10,7 @@ type ButtonProps = {
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children">;
 
 const base =
-  "inline-flex h-14 w-full items-center justify-center gap-3 rounded-full px-6 text-[18px] font-bold disabled:opacity-50";
+  "inline-flex h-14 w-full items-center justify-center gap-3 rounded-full px-6 text-[18px] font-bold transition-transform duration-150 ease-out active:scale-[0.97] disabled:opacity-50";
 
 const variantes = {
   primario: "bg-roxo-700 text-branco",

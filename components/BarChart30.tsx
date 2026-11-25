@@ -22,7 +22,10 @@ export default function BarChart30({ historico }: { historico: PontoHistorico[] 
 
   function escolherPorPosicao(e: PointerEvent<HTMLDivElement>) {
     const { left, width } = e.currentTarget.getBoundingClientRect();
-    if (width > 0) escolher(Math.floor(((e.clientX - left) / width) * historico.length));
+    if (width <= 0) return;
+    const novo = Math.max(0, Math.min(ultimo, Math.floor(((e.clientX - left) / width) * historico.length)));
+    if (novo !== indice) navigator.vibrate?.(8);
+    escolher(novo);
   }
 
   function aoPressionar(e: PointerEvent<HTMLDivElement>) {
@@ -47,7 +50,7 @@ export default function BarChart30({ historico }: { historico: PontoHistorico[] 
   const ponta = indice < 5 ? "left-1.5" : indice > ultimo - 5 ? "right-1.5" : "left-1/2 -translate-x-1/2";
 
   return (
-    <section data-grafico-card className="rounded-[32px] bg-branco px-5 pt-[18px] pb-3.5">
+    <section data-grafico-card className="animate-surgir rounded-[32px] bg-branco px-5 pt-[18px] pb-3.5 [animation-delay:60ms]">
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="text-[20px] font-bold leading-7 text-roxo-900">Últimos 30 dias</h2>
         <span className="text-[14px] leading-5 text-roxo-texto-2">R$ por rasa</span>
@@ -77,8 +80,8 @@ export default function BarChart30({ historico }: { historico: PontoHistorico[] 
                 data-barra
                 data-selecionada={i === indice ? "" : undefined}
                 data-media={p.media ?? undefined}
-                className={`rounded-full ${p.media === null ? "h-1 bg-bege-borda" : i === indice ? "bg-roxo-850" : "bg-roxo-texto-2/90"}`}
-                style={p.media === null ? undefined : { height: altura(p.media) }}
+                className={`origin-bottom animate-crescer rounded-full ${p.media === null ? "h-1 bg-bege-borda" : i === indice ? "bg-roxo-850" : "bg-roxo-texto-2/90"}`}
+                style={{ height: p.media === null ? undefined : altura(p.media), animationDelay: `${i * 8}ms` }}
               />
               {i === indice && p.media !== null && (
                 <span data-balao className={`pointer-events-none absolute bottom-full mb-1.5 whitespace-nowrap rounded-md bg-roxo-850 px-1.5 py-0.5 text-[13px] font-bold leading-4 text-branco ${alinhamento}`}>
@@ -105,7 +108,7 @@ export default function BarChart30({ historico }: { historico: PontoHistorico[] 
             <p className="text-[17px] font-bold text-roxo-900">Sem preços nesse dia</p>
           ) : (
             <>
-              <p className="text-[28px] font-extrabold leading-8 text-roxo-900">{formatarReais(dia.media)}</p>
+              <p className="text-[28px] font-extrabold leading-8 text-roxo-900 tabular-nums">{formatarReais(dia.media)}</p>
               <p className="text-[14px] leading-5 text-roxo-texto-2">Média da rasa · {contarRegistros(dia.qtd)}</p>
               {dia.minimo !== null && dia.maximo !== null && (
                 <p className="text-[14px] leading-5 text-roxo-texto-2">

@@ -1,4 +1,4 @@
-import { Check, X } from "lucide-react";
+import { X } from "lucide-react";
 import type { Situacao } from "@/lib/dados/pontos";
 import { dataDeISO } from "@/lib/formato";
 
@@ -22,13 +22,15 @@ export default function SealHero({ situacao, dataValidade }: Props) {
       data-seal-hero
       data-situacao={situacao}
       className={
-        "flex flex-col items-center rounded-[32px] px-6 pt-[31px] text-center text-branco" +
+        "flex animate-selo flex-col items-center rounded-[32px] px-6 pt-[31px] text-center text-branco" +
         (valido ? " bg-verde pb-[33px]" : " bg-vermelho pb-[26px]")
       }
     >
       <div className="grid size-[78px] place-items-center rounded-full border-2 border-branco">
         {valido ? (
-          <Check size={40} strokeWidth={2.5} aria-hidden />
+          <svg data-check viewBox="0 0 24 24" width={40} height={40} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M20 6 9 17l-5-5" pathLength={1} className="animate-desenhar [stroke-dasharray:1]" />
+          </svg>
         ) : (
           <X size={40} strokeWidth={2.5} aria-hidden />
         )}

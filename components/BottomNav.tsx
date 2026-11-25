@@ -56,10 +56,10 @@ export function BottomNav({ modo }: { modo: Modo | null }) {
         if (isActive) {
           return (
             <Link
-              key={href}
+              key={`${href}-ativo`}
               href={href}
               aria-current="page"
-              className="flex h-12 items-center gap-2 rounded-full bg-roxo-700 px-4 text-[15px] font-semibold text-branco"
+              className="flex h-12 animate-pilula items-center gap-2 rounded-full bg-roxo-700 px-4 text-[15px] font-semibold text-branco"
             >
               {icon}
               {label}
@@ -71,7 +71,7 @@ export function BottomNav({ modo }: { modo: Modo | null }) {
           <Link
             key={href}
             href={href}
-            className="grid size-12 place-items-center rounded-full text-roxo-texto-2"
+            className="grid size-12 place-items-center rounded-full text-roxo-texto-2 transition-transform duration-150 ease-out active:scale-90"
           >
             {icon}
             <span className="sr-only">{label}</span>
